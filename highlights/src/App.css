@@ -1,6 +1,7 @@
 .App {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serifS;
   text-align: center;
   background-color: green;
   color: white;
-  height: 725px;
+  height: 850px;
 }

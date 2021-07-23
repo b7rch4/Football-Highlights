@@ -17,6 +17,7 @@ class Highlights extends Component {
     render() {
         return(
             <div>
+                <br></br>
                 <h1 id="heading">Football Highlights</h1>
                 <h3 id="subheading">Select teams to see the match highlights</h3>
                 <select id="dropdown-1" value={this.state.homeTeam} onChange={this.homeChange} >
@@ -30,6 +31,7 @@ class Highlights extends Component {
                     <option value="Paraguay">Paraguay</option>
                     <option value="Peru">Peru</option>
                     <option value="Uruguay">Uruguay</option>
+                    <option value="Venezuela">Venezuela</option>
                 </select>
                 <span id="vs"> vs </span>
                 <select id="dropdown-2" value={this.state.awayTeam} onChange={this.awayChange}>
@@ -43,13 +45,15 @@ class Highlights extends Component {
                     <option value="Paraguay">Paraguay</option>
                     <option value="Peru">Peru</option>
                     <option value="Uruguay">Uruguay</option>
+                    <option value="Venezuela">Venezuela</option>
                 </select>
-                <br></br>
+                <br></br><br></br>
                 <input id="search" type="button" value="Search" onClick={this.video}></input>
+                <br></br><br></br>
                 <div>{this.state.title}</div>
                 <br></br>
                 <span>{this.state.status}</span>
-                <iframe title="Highlights" src={this.state.embed} width='854px' height='480px' allowFullScreen="true"></iframe>
+                <iframe title="Highlights" src={this.state.embed} width='854px' height='480px' allowFullScreen={true}></iframe>
             </div>
         )
     }
@@ -68,6 +72,16 @@ class Highlights extends Component {
         this.setState({awayTeam: event.target.value})
     }
 
+    video = () => {
+        let match = this.search()
+        if (match == undefined) {
+            alert("This match does not exist!")
+        } else {
+        this.setState({title: match.title})
+        this.filter(match.videos[0].embed)
+        }
+    }
+
     search = () => {
         for (let i = 0; i < this.state.footballData.length; i++) {
             if (this.state.footballData[i].side1.name === this.state.homeTeam && this.state.footballData[i].side2.name === this.state.awayTeam) {
@@ -76,15 +90,8 @@ class Highlights extends Component {
         };
     }
 
-    video = () => {
-        let match = this.search()
-        this.setState({title: match.title})
-        this.filter(match.videos[0].embed)
-    }
-
     filter = (embed) => {
         let src = embed.slice(90, 187)
-        console.log(src)
         this.setState({embed: src})
     }
 }
