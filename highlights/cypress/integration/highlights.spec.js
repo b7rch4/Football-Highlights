@@ -6,7 +6,7 @@ describe("When I load the page", function() {
 
     it("Displays a sub-heading", function() {
         cy.visit('/')
-        cy.get("#subheading").should("contain", "Select a team to see their highlights")
+        cy.get("#subheading").should("contain", "Select teams to see the match highlights")
     })
 
     it("Displays the first dropdown with inital message", function() {
@@ -25,16 +25,26 @@ describe("When I load the page", function() {
     })
 })
 
-xdescribe("Selecting an option", function() {
-    it("Selects Liverpool", function() {
+describe("Selecting an option", function() {
+    it("First dropdown selects Argentina", function() {
         cy.visit('/')
-        cy.get("#dropdown").select("Liverpool")
-        cy.get("#dropdown").should("have.value", "Liverpool")
+        cy.get("#dropdown-1").select("Argentina")
+        cy.get("#dropdown-1").should("have.value", "Argentina")
+    })
+
+    it("Second dropdown selects Brazil", function() {
+        cy.visit('/')
+        cy.get("#dropdown-2").select("Brazil")
+        cy.get("#dropdown-2").should("have.value", "Brazil")
     })
 })
 
 describe("Displaying the video", function() {
     it("Embeds video", function() {
         cy.visit('/')
+        cy.get("#dropdown-1").select("Argentina")
+        cy.get("#dropdown-2").select("Brazil")
+        cy.get("#search").click()
+        cy.get("#video").should("be.visible")
     })
 })

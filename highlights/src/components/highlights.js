@@ -53,7 +53,7 @@ class Highlights extends Component {
                 <div>{this.state.title}</div>
                 <br></br>
                 <span>{this.state.status}</span>
-                <iframe title="Highlights" src={this.state.embed} width='854px' height='480px' allowFullScreen={true}></iframe>
+                <iframe id="video" title="Highlights" src={this.state.embed} width='854px' height='480px' allowFullScreen={true}></iframe>
             </div>
         )
     }
