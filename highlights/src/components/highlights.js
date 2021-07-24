@@ -18,7 +18,7 @@ class Highlights extends Component {
         return(
             <div>
                 <br></br>
-                <h1 id="heading">Football Highlights</h1>
+                <header className="Header"><h1>Football Highlights</h1></header>
                 <h3 id="subheading">Select teams to see the match highlights</h3>
                 <select id="dropdown-1" value={this.state.homeTeam} onChange={this.homeChange} >
                     <option value="Select the home team">--Select the home team--</option>

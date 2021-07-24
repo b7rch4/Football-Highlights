@@ -9,7 +9,7 @@ test("Heading displays correctly", function() {
 
 test("Sub-heading displays correctly", function() {
     render(<Highlights />)
-    const subHeadingElement = screen.getByText(/Select a team to see their highlights/i)
+    const subHeadingElement = screen.getByText(/Select teams to see the match highlights/i)
     expect(subHeadingElement).toBeInTheDocument();
 })
 
