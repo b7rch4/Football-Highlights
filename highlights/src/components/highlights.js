@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import $ from 'jquery'
+require('dotenv').config()
 
 class Highlights extends Component {
     constructor(props) {
         super(props)
+        this.apiKey = process.env.REACT_APP_API_KEY
         this.state = {
             footballData: [],
             title: "",
@@ -22,30 +24,48 @@ class Highlights extends Component {
                 <h3 id="subheading">Select teams to see the match highlights</h3>
                 <select id="dropdown-1" value={this.state.homeTeam} onChange={this.homeChange} >
                     <option value="Select the home team">--Select the home team--</option>
-                    <option value="Argentina">Argentina</option>
-                    <option value="Bolivia">Bolivia</option>
-                    <option value="Brazil">Brazil</option>
-                    <option value="Chile">Chile</option>
-                    <option value="Colombia">Colombia</option>
-                    <option value="Ecuador">Ecuador</option>
-                    <option value="Paraguay">Paraguay</option>
-                    <option value="Peru">Peru</option>
-                    <option value="Uruguay">Uruguay</option>
-                    <option value="Venezuela">Venezuela</option>
+                    <option value="Arsenal">Arsenal</option>
+                    <option value="Aston Villa">Aston Villa</option>
+                    <option value="Brentford">Brentford</option>
+                    <option value="Burnley">Burnley</option>
+                    <option value="Brighton">Brighton</option>
+                    <option value="Chelsea">Chelsea</option>
+                    <option value="Everton">Everton</option>
+                    <option value="Leeds">Leeds</option>
+                    <option value="Leicester">Leicester</option>
+                    <option value="Liverpool">Liverpool</option>
+                    <option value="Manchester City">Manchester City</option>
+                    <option value="Manchester United">Manchester United</option>
+                    <option value="Newcastle">Newcastle</option>
+                    <option value="Norwich">Norwich</option>
+                    <option value="Southampton">Southampton</option>
+                    <option value="Tottenham">Tottenham</option>
+                    <option value="Watford">Watford</option>
+                    <option value="West Ham">West Ham</option>
+                    <option value="Wolves">Wolves</option>
                 </select>
                 <span id="vs"> vs </span>
                 <select id="dropdown-2" value={this.state.awayTeam} onChange={this.awayChange}>
                     <option value="Select the away team">--Select the away team--</option>
-                    <option value="Argentina">Argentina</option>
-                    <option value="Bolivia">Bolivia</option>
-                    <option value="Brazil">Brazil</option>
-                    <option value="Chile">Chile</option>
-                    <option value="Colombia">Colombia</option>
-                    <option value="Ecuador">Ecuador</option>
-                    <option value="Paraguay">Paraguay</option>
-                    <option value="Peru">Peru</option>
-                    <option value="Uruguay">Uruguay</option>
-                    <option value="Venezuela">Venezuela</option>
+                    <option value="Arsenal">Arsenal</option>
+                    <option value="Aston Villa">Aston Villa</option>
+                    <option value="Brentford">Brentford</option>
+                    <option value="Burnley">Burnley</option>
+                    <option value="Brighton">Brighton</option>
+                    <option value="Chelsea">Chelsea</option>
+                    <option value="Everton">Everton</option>
+                    <option value="Leeds">Leeds</option>
+                    <option value="Leicester">Leicester</option>
+                    <option value="Liverpool">Liverpool</option>
+                    <option value="Manchester City">Manchester City</option>
+                    <option value="Manchester United">Manchester United</option>
+                    <option value="Newcastle">Newcastle</option>
+                    <option value="Norwich">Norwich</option>
+                    <option value="Southampton">Southampton</option>
+                    <option value="Tottenham">Tottenham</option>
+                    <option value="Watford">Watford</option>
+                    <option value="West Ham">West Ham</option>
+                    <option value="Wolves">Wolves</option>
                 </select>
                 <br></br><br></br>
                 <input id="search" type="button" value="Search" onClick={this.video}></input>
@@ -59,8 +79,8 @@ class Highlights extends Component {
     }
 
     componentDidMount() {
-        $.get("https://www.scorebat.com/video-api/v1/", (data) => {
-            this.setState({footballData: data})
+        $.get(`https://www.scorebat.com/video-api/v3/feed/?token=${this.apiKey}`, (data) => {
+            this.setState({footballData: data.response})
         })
     }
 
@@ -74,7 +94,7 @@ class Highlights extends Component {
 
     video = () => {
         let match = this.search()
-        if (match == undefined) {
+        if (match === undefined) {
             alert("This match does not exist!")
         } else {
         this.setState({title: match.title})
@@ -84,9 +104,9 @@ class Highlights extends Component {
 
     search = () => {
         for (let i = 0; i < this.state.footballData.length; i++) {
-            if (this.state.footballData[i].side1.name === this.state.homeTeam && this.state.footballData[i].side2.name === this.state.awayTeam) {
-               return this.state.footballData[i]
-            } 
+            if (this.state.footballData[i].title.includes(this.state.homeTeam) & this.state.footballData[i].title.includes(this.state.awayTeam)) {
+                return this.state.footballData[i]
+             } 
         };
     }
 

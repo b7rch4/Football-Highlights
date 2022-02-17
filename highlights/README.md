@@ -4,10 +4,14 @@
 ```
 This React app was created for my first build-day at the Digital Futures Academy
 
-It is a football highlights app, which allows the user to search for two teams and watch highlights of the match.
+It is a football highlights app, which allows the user to search for two Premier League teams and watch highlights of the match.
 ```
 
 ## Set Up
+Before using the app, sign up for an API Key at https://www.scorebat.com/video-api/.
+
+Add this to a .env file under the name REACT_APP_API_KEY
+
 To install and run the app, use the following commands in the terminal
 ```
 $ git clone git@github.com:b7rch4/news-summary-challenge.git

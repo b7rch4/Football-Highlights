@@ -1,12 +1,16 @@
 .App {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serifS;
   text-align: center;
-  background-color: green;
   color: white;
-  height: 850px;
+  height: 100%;
 }
 
 .Header {
   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-size: 25px;
+}
+
+body {
+  color: #fff;
+  background-color: green;
 }
