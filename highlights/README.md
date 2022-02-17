@@ -14,7 +14,7 @@ Add this to a .env file under the name REACT_APP_API_KEY
 
 To install and run the app, use the following commands in the terminal
 ```
-$ git clone git@github.com:b7rch4/news-summary-challenge.git
+$ git clone git@github.com:b7rch4/Football-Highlights.git
 
 $ npm install
 
